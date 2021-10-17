@@ -34,4 +34,14 @@ export class TasksService {
 
     return task;
   }
+
+  public delete(id: string): void {
+    const taskExists = this.tasks.find((task) => task.id === id);
+
+    if (!taskExists) {
+      throw new NotFoundException('Task not found');
+    }
+
+    this.tasks = this.tasks.filter((task) => task.id !== id);
+  }
 }
